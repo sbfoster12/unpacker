@@ -1,0 +1,182 @@
+Added MIDASSYS to path.
+GM2DAQ_DIR environment variable set to: /home/pioneer/pioneer/pioneer-teststand/packages/experiment/gm2daq
+ROOT_ROOT environment variable set to: /usr/include/root
+CACTUS_ROOT environment variable set to: /home/pioneer/pioneer/pioneer-teststand/packages/cactus
+BOOST_ROOT environment variable set to: /home/pioneer/pioneer/pioneer-teststand/packages/boost
+PUGIXML_ROOT environment variable set to: /home/pioneer/pioneer/pioneer-teststand/packages/pugixml-1.8
+MIDAS_EXPT_NAME environment variable set to: DAQ
+MIDASSYS environment variable set to: /home/pioneer/pioneer/pioneer-teststand/packages/midas
+MIDAS_EXPTAB environment variable set to: /home/pioneer/pioneer/pioneer-teststand/online/exptab
+cactus lib path added to LD_LIBRARY_PATH: /home/pioneer/pioneer/pioneer-teststand/packages/cactus/lib
+boost lib path added to LD_LIBRARY_PATH: /home/pioneer/pioneer/pioneer-teststand/packages/boost/lib
+Running from: /home/pioneer/pioneer/pioneer-teststand/packages/unpacking/bin
+New files:
+Old files: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00033.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00035.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00021.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00018.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00025.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00032.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00011.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00031.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00046.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00027.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00030.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00039.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00024.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00014.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00015.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00037.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00034.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00013.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00020.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00043.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00045.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00019.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00016.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00028.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00022.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00023.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00017.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00036.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00012.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00040.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00029.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00042.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00026.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00044.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00047.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00041.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00038.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00048.mid.lz4
+Found files: + +/home/pioneer/pioneer/pioneer-teststand/online/run01093_00033.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00035.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00021.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00018.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00025.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00032.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00011.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00031.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00046.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00027.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00030.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00039.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00024.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00014.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00015.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00037.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00034.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00013.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00020.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00043.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00045.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00019.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00016.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00028.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00022.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00023.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00017.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00036.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00012.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00040.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00029.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00042.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00026.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00044.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00047.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00041.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00038.mid.lz4 /home/pioneer/pioneer/pioneer-teststand/online/run01093_00048.mid.lz4
+processing file: + at time 1700404202 / 1700404502
+Total nearline processes: 0
+Filename: +
+Run number: 0 /
+Subrun number: 0 /
+du: cannot access ‘+’: No such file or directory
+Size:
+stat: cannot stat ‘+’: No such file or directory
+Creation date:
+File /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run_.log exists, not going to process twice!
+processing file: +/home/pioneer/pioneer/pioneer-teststand/online/run01093_00033.mid.lz4 at time 1700404202 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00033.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 33 / 00033
+du: cannot access ‘+/home/pioneer/pioneer/pioneer-teststand/online/run01093_00033.mid.lz4’: No such file or directory
+Size:
+stat: cannot stat ‘+/home/pioneer/pioneer/pioneer-teststand/online/run01093_00033.mid.lz4’: No such file or directory
+Creation date:
+File /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00033.log exists, not going to process twice!
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00035.mid.lz4 at time 1700404202 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00035.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 35 / 00035
+Size: 97
+Creation date: 2023-11-19 14:40:45.114724
+File /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00035.log exists, not going to process twice!
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00021.mid.lz4 at time 1700404202 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00021.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 21 / 00021
+Size: 97
+Creation date: 2023-11-19 14:34:42.088071
+pioneer_unpacker /home/pioneer/pioneer/pioneer-teststand/online/run01093_00021.mid.lz4 0 detector_mapping.json /data2/nearline/nearline_hists_run01093_00021.root
+
+real	0m53.974s
+user	0m50.520s
+sys	0m0.853s
+Process exited with status 0
+Processed /home/pioneer/pioneer/pioneer-teststand/online/run01093_00021.mid.lz4 to /data2/nearline/nearline_hists_run01093_00021.root
+     -> /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00021.log
+INSERT INTO nearline_processing(run_number, subrun_number, nearline_processed, midas_file_date, midas_filesize, process_date, midas_file_location, nearline_file_location, nearline_log_location, nearline_exit_status) VALUES( 1093, 21, true, '2023-11-19 14:34:42.088071', 97, CURRENT_TIMESTAMP, '/home/pioneer/pioneer/pioneer-teststand/online/run01093_00021.mid.lz4', '/data2/nearline/nearline_hists_run01093_00021.root', '/home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00021.log', 0 );
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00018.mid.lz4 at time 1700404256 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00018.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 18 / 00018
+Size: 97
+Creation date: 2023-11-19 14:33:17.443918
+pioneer_unpacker /home/pioneer/pioneer/pioneer-teststand/online/run01093_00018.mid.lz4 0 detector_mapping.json /data2/nearline/nearline_hists_run01093_00018.root
+
+real	0m51.925s
+user	0m50.158s
+sys	0m0.721s
+Process exited with status 0
+Processed /home/pioneer/pioneer/pioneer-teststand/online/run01093_00018.mid.lz4 to /data2/nearline/nearline_hists_run01093_00018.root
+     -> /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00018.log
+INSERT INTO nearline_processing(run_number, subrun_number, nearline_processed, midas_file_date, midas_filesize, process_date, midas_file_location, nearline_file_location, nearline_log_location, nearline_exit_status) VALUES( 1093, 18, true, '2023-11-19 14:33:17.443918', 97, CURRENT_TIMESTAMP, '/home/pioneer/pioneer/pioneer-teststand/online/run01093_00018.mid.lz4', '/data2/nearline/nearline_hists_run01093_00018.root', '/home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00018.log', 0 );
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00025.mid.lz4 at time 1700404308 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00025.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 25 / 00025
+Size: 97
+Creation date: 2023-11-19 14:36:22.827252
+File /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00025.log exists, not going to process twice!
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00032.mid.lz4 at time 1700404308 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00032.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 32 / 00032
+Size: 97
+Creation date: 2023-11-19 14:39:30.061589
+File /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00032.log exists, not going to process twice!
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00011.mid.lz4 at time 1700404308 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00011.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 11 / 00011
+Size: 97
+Creation date: 2023-11-19 14:30:20.594600
+File /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00011.log exists, not going to process twice!
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00031.mid.lz4 at time 1700404308 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00031.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 31 / 00031
+Size: 97
+Creation date: 2023-11-19 14:39:03.679541
+pioneer_unpacker /home/pioneer/pioneer/pioneer-teststand/online/run01093_00031.mid.lz4 0 detector_mapping.json /data2/nearline/nearline_hists_run01093_00031.root
+
+real	0m52.025s
+user	0m50.127s
+sys	0m0.841s
+Process exited with status 0
+Processed /home/pioneer/pioneer/pioneer-teststand/online/run01093_00031.mid.lz4 to /data2/nearline/nearline_hists_run01093_00031.root
+     -> /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00031.log
+INSERT INTO nearline_processing(run_number, subrun_number, nearline_processed, midas_file_date, midas_filesize, process_date, midas_file_location, nearline_file_location, nearline_log_location, nearline_exit_status) VALUES( 1093, 31, true, '2023-11-19 14:39:03.679541', 97, CURRENT_TIMESTAMP, '/home/pioneer/pioneer/pioneer-teststand/online/run01093_00031.mid.lz4', '/data2/nearline/nearline_hists_run01093_00031.root', '/home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00031.log', 0 );
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00046.mid.lz4 at time 1700404360 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00046.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 46 / 00046
+Size: 97
+Creation date: 2023-11-19 14:45:33.845243
+File /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00046.log exists, not going to process twice!
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00027.mid.lz4 at time 1700404360 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00027.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 27 / 00027
+Size: 97
+Creation date: 2023-11-19 14:37:12.780342
+pioneer_unpacker /home/pioneer/pioneer/pioneer-teststand/online/run01093_00027.mid.lz4 0 detector_mapping.json /data2/nearline/nearline_hists_run01093_00027.root
+
+real	0m52.082s
+user	0m50.264s
+sys	0m0.856s
+Process exited with status 0
+Processed /home/pioneer/pioneer/pioneer-teststand/online/run01093_00027.mid.lz4 to /data2/nearline/nearline_hists_run01093_00027.root
+     -> /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00027.log
+INSERT INTO nearline_processing(run_number, subrun_number, nearline_processed, midas_file_date, midas_filesize, process_date, midas_file_location, nearline_file_location, nearline_log_location, nearline_exit_status) VALUES( 1093, 27, true, '2023-11-19 14:37:12.780342', 97, CURRENT_TIMESTAMP, '/home/pioneer/pioneer/pioneer-teststand/online/run01093_00027.mid.lz4', '/data2/nearline/nearline_hists_run01093_00027.root', '/home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00027.log', 0 );
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00030.mid.lz4 at time 1700404412 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00030.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 30 / 00030
+Size: 97
+Creation date: 2023-11-19 14:38:28.758478
+pioneer_unpacker /home/pioneer/pioneer/pioneer-teststand/online/run01093_00030.mid.lz4 0 detector_mapping.json /data2/nearline/nearline_hists_run01093_00030.root
+
+real	0m53.020s
+user	0m50.975s
+sys	0m0.976s
+Process exited with status 0
+Processed /home/pioneer/pioneer/pioneer-teststand/online/run01093_00030.mid.lz4 to /data2/nearline/nearline_hists_run01093_00030.root
+     -> /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00030.log
+INSERT INTO nearline_processing(run_number, subrun_number, nearline_processed, midas_file_date, midas_filesize, process_date, midas_file_location, nearline_file_location, nearline_log_location, nearline_exit_status) VALUES( 1093, 30, true, '2023-11-19 14:38:28.758478', 97, CURRENT_TIMESTAMP, '/home/pioneer/pioneer/pioneer-teststand/online/run01093_00030.mid.lz4', '/data2/nearline/nearline_hists_run01093_00030.root', '/home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00030.log', 0 );
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00039.mid.lz4 at time 1700404466 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00039.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 39 / 00039
+Size: 97
+Creation date: 2023-11-19 14:42:26.110906
+File /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00039.log exists, not going to process twice!
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00024.mid.lz4 at time 1700404466 / 1700404502
+Total nearline processes: 0
+Filename: run01093_00024.mid.lz4
+Run number: 1093 / 01093
+Subrun number: 24 / 00024
+Size: 97
+Creation date: 2023-11-19 14:35:58.161207
+pioneer_unpacker /home/pioneer/pioneer/pioneer-teststand/online/run01093_00024.mid.lz4 0 detector_mapping.json /data2/nearline/nearline_hists_run01093_00024.root
+
+real	0m47.459s
+user	0m46.127s
+sys	0m0.765s
+Process exited with status 0
+Processed /home/pioneer/pioneer/pioneer-teststand/online/run01093_00024.mid.lz4 to /data2/nearline/nearline_hists_run01093_00024.root
+     -> /home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00024.log
+INSERT INTO nearline_processing(run_number, subrun_number, nearline_processed, midas_file_date, midas_filesize, process_date, midas_file_location, nearline_file_location, nearline_log_location, nearline_exit_status) VALUES( 1093, 24, true, '2023-11-19 14:35:58.161207', 97, CURRENT_TIMESTAMP, '/home/pioneer/pioneer/pioneer-teststand/online/run01093_00024.mid.lz4', '/data2/nearline/nearline_hists_run01093_00024.root', '/home/pioneer/pioneer/pioneer-teststand/nearline_logs/nearline_run01093_00024.log', 0 );
+processing file: /home/pioneer/pioneer/pioneer-teststand/online/run01093_00014.mid.lz4 at time 1700404513 / 1700404502
+Timeout. All done.
+All done!
