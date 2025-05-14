@@ -17,3 +17,4 @@ database/test_data_location
 *.pdf
 *.png
 **logfile
+*_C.d
