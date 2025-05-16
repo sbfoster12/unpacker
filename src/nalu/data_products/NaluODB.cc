@@ -1,6 +1,5 @@
 #include "nalu/data_products/NaluODB.hh"
 
-
 using namespace dataProducts;
 
 NaluODB::NaluODB()

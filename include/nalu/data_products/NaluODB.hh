@@ -1,8 +1,6 @@
 #ifndef NALUODB_HH 
 #define NALUODB_HH
 
-#include <nlohmann/json.hpp>
-
 #include "common/data_products/DataProduct.hh"
 
 namespace dataProducts {

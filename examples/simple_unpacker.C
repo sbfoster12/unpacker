@@ -40,7 +40,7 @@ R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libnalu_unpacking.dylib)
 
 #include <string>
 #include <sstream>
-#include <nlohmann/json.hpp>
+// #include <nlohmann/json.hpp>
 
 int simple_unpacker(std::string input_file_name, int verbosity)
 {
