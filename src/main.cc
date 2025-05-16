@@ -55,14 +55,14 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    // Set verbosity for unpacker
+    utils::LoggerHolder::getInstance().SetVerbosity(verbosity);
+
     // output file name
     std::string output_file_name;
     output_file_name = input_file_name.substr(input_file_name.find_last_of("/\\") + 1);
     output_file_name = output_file_name.substr(0, output_file_name.find_last_of('.')) + ".root";
-    utils::LoggerHolder::getInstance()->InfoLogger << "Output file: " << output_file_name << std::endl;
-
-    // Set verbosity for unpacker
-    utils::LoggerHolder::getInstance()->SetVerbosity(verbosity);
+    utils::LoggerHolder::getInstance().InfoLogger << "Output file: " << output_file_name << std::endl;
 
     // End of parsing command line arguments
     // -----------------------------------------------------------------------------------------------
@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
         }
 
         if (thisEvent->serial_number % 100 == 0) {
-            utils::LoggerHolder::getInstance()->InfoLogger << "event_id: " << thisEvent->event_id << ", serial number: " << thisEvent->serial_number << std::endl;
+            utils::LoggerHolder::getInstance().InfoLogger << "event_id: " << thisEvent->event_id << ", serial number: " << thisEvent->serial_number << std::endl;
         }
         
         int event_id = thisEvent->event_id;
@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
         // only unpack events with id 1
         if (event_id > 0) {
             nTotalMidasEvents++;
-            utils::LoggerHolder::getInstance()->InfoLogger << "Processing event " << nTotalMidasEvents << std::endl;
+            utils::LoggerHolder::getInstance().InfoLogger << "Processing event " << nTotalMidasEvents << std::endl;
             // Unpack the event
             // This will fill the dataproduct collections
             auto status = eventUnpacker->UnpackEvent(thisEvent);
@@ -243,8 +243,8 @@ int main(int argc, char *argv[])
     // treeSimple->Write();
     outfile->Close();
 
-    utils::LoggerHolder::getInstance()->InfoLogger << "Skipped " << nSkippedMidasEvents << "/" << nTotalMidasEvents << " midas events" << std::endl;
+    utils::LoggerHolder::getInstance().InfoLogger << "Skipped " << nSkippedMidasEvents << "/" << nTotalMidasEvents << " midas events" << std::endl;
 
-    utils::LoggerHolder::getInstance()->InfoLogger << "All done!" << std::endl;
+    utils::LoggerHolder::getInstance().InfoLogger << "All done!" << std::endl;
     return 0;
 }

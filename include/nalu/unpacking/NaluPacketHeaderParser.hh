@@ -35,6 +35,13 @@ namespace parsers {
     private:
         const std::string className_ = "NaluPacketHeaderParser";
 
+        DataLocation packet_header_data_location_;
+        DataLocation packet_info_data_location_;
+        DataLocation channel_data_location_;
+        DataLocation trigger_time_data_location_;
+        DataLocation logical_position_data_location_;
+        DataLocation window_position_data_location_;
+
     };
 }
 

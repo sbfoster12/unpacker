@@ -9,7 +9,8 @@ A C++ library for unpacking midas data.
 ### Prerequisites
 - [CMake]
 - [ROOT]
-
+- [ZLIB]
+- [nlohmann/json]
 
 ### Building the Library
 

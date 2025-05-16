@@ -1,0 +1,209 @@
+
+Processing simple_unpacker.C++("../../analysis/unpacker_testing/run00036.mid.lz4",0)...
+Output file: run00036.mid.root
+event_id: 32768, serial number: 36
+event_id: 3, serial number: 0
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 1
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 2
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 3
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 4
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 5
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 6
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 7
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 8
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 9
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 10
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 11
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 12
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 13
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 14
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 15
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 16
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 17
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 18
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 19
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 20
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 21
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 22
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 23
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 24
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 25
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 26
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 27
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 28
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 29
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 30
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 31
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 32
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 33
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 34
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 35
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 36
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 37
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 38
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 39
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 40
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 41
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 42
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 43
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 44
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 45
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 46
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 47
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 48
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 49
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 50
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 51
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 52
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 53
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 54
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 55
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 56
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 57
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 58
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 59
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 60
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 61
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 62
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 63
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 64
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 65
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 66
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 67
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 68
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 69
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 70
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 71
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 72
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 73
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 74
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 75
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 76
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 77
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 78
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 79
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 80
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 81
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 82
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 83
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 84
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 85
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 86
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 87
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 88
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 89
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 90
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 91
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 92
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 93
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 94
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 95
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 96
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 97
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 98
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 99
+2 banks: AD%0 AT%0
+event_id: 3, serial number: 100
+2 banks: AD%0 AT%0
+Skipped 0/101 midas events
+All done!
+(int) 0

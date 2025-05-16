@@ -1,0 +1,150 @@
+{
+  "nalu_event_header" : {
+    "event_header": {
+      "word": 0,
+      "bit" : 0,
+      "num_bytes": 2
+    },
+    "event_info": {
+      "word": 0,
+      "bit" : 16,
+      "num_bytes": 1
+    },
+    "event_index": {
+      "word": 0,
+      "bit" : 24,
+      "num_bytes": 4
+    },
+    "event_reference_time": {
+      "word_0": 0,
+      "bit_0" : 56,
+      "num_bytes_0": 1,
+      "word_1": 1,
+      "bit_1" : 0,
+      "num_bytes_1": 3
+    },
+    "packet_size": {
+      "word": 1,
+      "bit" : 24,
+      "num_bytes": 2
+    },
+    "channel_mask": {
+      "word_0": 1,
+      "bit_0" : 40,
+      "num_bytes_0": 3,
+      "word_1": 2,
+      "bit_1" : 0,
+      "num_bytes_1": 5
+    },
+    "num_windows": {
+      "word": 2,
+      "bit" : 40,
+      "num_bytes": 1
+    },
+    "num_packets": {
+      "word": 2,
+      "bit" : 48,
+      "num_bytes": 2
+    }
+  },
+  "nalu_event_footer" : {
+    "event_footer": {
+      "word": 0,
+      "bit": 0,
+      "num_bytes": 2
+    }
+  },
+  "nalu_packet_header" : {
+    "packet_header": {
+      "word": 0,
+      "bit": 0,
+      "num_bytes": 2
+    },
+    "packet_info": {
+      "word": 0,
+      "bit": 16,
+      "num_bytes": 1
+    },
+    "channel": {
+      "word": 0,
+      "bit": 24,
+      "num_bytes": 1
+    },
+    "trigger_time": {
+      "word": 0,
+      "bit": 32,
+      "num_bytes": 4
+    },
+    "logical_position": {
+      "word": 1,
+      "bit": 0,
+      "num_bytes": 2
+    },
+    "window_position": {
+      "word": 1,
+      "bit": 16,
+      "num_bytes": 2
+    }
+  },
+  "nalu_packet_footer" : {
+    "parser_index": {
+      "word": 0,
+      "bit": 32,
+      "num_bytes": 2
+    },
+    "packet_footer": {
+      "word": 0,
+      "bit": 48,
+      "num_bytes": 2
+    }
+  },
+  "nalu_packet" : {
+    "event_footer": {
+      "word": 0,
+      "bit": 0,
+      "num_bytes": 2
+    }
+  },
+  "nalu_time" : {
+    "collection_cycle_index": {
+      "word": 0,
+      "bit": 0,
+      "num_bytes": 8
+    },
+    "collection_cycle_time_stamps_ns": {
+      "word": 1,
+      "bit": 0,
+      "num_bytes": 8
+    },
+    "udp_time": {
+      "word": 2,
+      "bit": 0,
+      "num_bytes": 8
+    },
+    "parse_time": {
+      "word": 3,
+      "bit": 0,
+      "num_bytes": 8
+    },
+    "event_time": {
+      "word": 4,
+      "bit": 0,
+      "num_bytes": 8
+    },
+    "total_time": {
+      "word": 5,
+      "bit": 0,
+      "num_bytes": 8
+    },
+    "data_processed": {
+      "word": 6,
+      "bit": 0,
+      "num_bytes": 8
+    },
+    "data_rate": {
+      "word": 7,
+      "bit": 0,
+      "num_bytes": 8
+    }
+  }
+}

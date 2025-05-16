@@ -53,29 +53,29 @@ namespace utils {
     class LoggerHolder {
         public:
         
-            static LoggerHolder* getInstance() {
-                if (instance_ == nullptr) {
-                    instance_ = new LoggerHolder();
-                }
-                return instance_;
-            }
+        static LoggerHolder& getInstance() {
+            static LoggerHolder instance_; 
+            return instance_;
+        }
             
             void SetVerbosity(int verbosity);
 
             // The loggers
             utils::Logger InfoLogger;
             utils::Logger DebugLogger;
+            utils::Logger WarningLogger;
 
         private:
             // Private constructor to prevent direct instantiation
             LoggerHolder()
                 : InfoLogger("Info",1),
                 DebugLogger("Debug",2),
+                WarningLogger("Warning",0),
                 verbosity_(0)
                 {}
 
             // Private static instance
-            static utils::LoggerHolder* instance_;
+            static utils::LoggerHolder instance_;
 
             //tree
             int verbosity_;

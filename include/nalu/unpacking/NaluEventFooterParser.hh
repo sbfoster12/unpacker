@@ -30,6 +30,8 @@ namespace parsers {
     private:
         const std::string className_ = "NaluEventFooterParser";
 
+        DataLocation event_footer_data_location_;
+
     };
 }
 

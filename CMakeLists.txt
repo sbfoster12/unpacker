@@ -13,6 +13,9 @@ include("${ROOT_DIR}/RootMacros.cmake")
 # ZLIB
 find_package(ZLIB REQUIRED)
 
+# JSON
+find_package(nlohmann_json REQUIRED)
+
 set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_OSX_ARCHITECTURES "arm64")
@@ -72,4 +75,4 @@ install(TARGETS unpacker
 
 # target_compile_options(unpacker PRIVATE -Wall -Wextra -Wno-undef)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -v")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -v")

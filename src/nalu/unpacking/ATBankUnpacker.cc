@@ -6,7 +6,7 @@ ATBankUnpacker::ATBankUnpacker() :
     BankUnpacker(),
     className_("ATBankUnpacker")
 {
-    utils::LoggerHolder::getInstance()->InfoLogger << "We are constructing the " << className_ << std::endl;
+    utils::LoggerHolder::getInstance().InfoLogger << "We are constructing the " << className_ << std::endl;
 
     payloadUnpackers_[AT_PAYLOAD_ID] = this->MakeAndRegister<unpackers::ATPayloadUnpacker>();
 
@@ -51,7 +51,7 @@ int ATBankUnpacker::UnpackBank(TMEvent* event, const std::string& bankName) {
         uint64_t* bankData = reinterpret_cast<uint64_t*>(event->GetBankData(bank));
         return this->UnpackBank(bankData, totalWords, event->serial_number, std::stoi(bank->name.substr(3, 4)));
     } else {
-        utils::LoggerHolder::getInstance()->InfoLogger <<"  No AT bank in event ID: " <<  event->event_id << " SN: " << event->serial_number << std::endl;
+        utils::LoggerHolder::getInstance().InfoLogger <<"  No AT bank in event ID: " <<  event->event_id << " SN: " << event->serial_number << std::endl;
         return UNPACKING_FAILURE;
     }
 }

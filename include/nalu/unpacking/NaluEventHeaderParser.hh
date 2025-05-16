@@ -38,6 +38,15 @@ namespace parsers {
     private:
         const std::string className_ = "NaluEventHeaderParser";
 
+        DataLocation event_header_data_location_;
+        DataLocation event_info_data_location_;
+        DataLocation event_index_data_location_;
+        DataLocation event_reference_time_data_location_;
+        DataLocation packet_size_data_location_;
+        DataLocation channel_mask_data_location_;
+        DataLocation num_windows_data_location_;
+        DataLocation num_packets_data_location_;
+
     };
 }
 

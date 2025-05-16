@@ -13,12 +13,10 @@ void Logger::SetVerbosity(int verbosity) { verbosity_ = verbosity; }
 
 //LOGGERHOLDER
 
-// Define the static member variable instance_
-LoggerHolder* LoggerHolder::instance_ = nullptr;
-
 void LoggerHolder::SetVerbosity(int verbosity) {
     verbosity_ = verbosity;
     this->InfoLogger.SetVerbosity(verbosity);
     this->DebugLogger.SetVerbosity(verbosity);
+    this->WarningLogger.SetVerbosity(verbosity);
 }
 

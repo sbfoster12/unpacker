@@ -10,11 +10,11 @@ add_library(common_unpacking SHARED ${SOURCE_FILES})
 target_include_directories(common_unpacking
     PUBLIC 
         ${CMAKE_SOURCE_DIR}/include
-
 )
 
 target_link_libraries(common_unpacking
     PUBLIC
         common_data_products
         midas
+        nlohmann_json::nlohmann_json
 )

@@ -31,6 +31,9 @@ namespace parsers {
     private:
         const std::string className_ = "NaluPacketFooterParser";
 
+        DataLocation parser_index_data_location_;
+        DataLocation packet_footer_data_location_;
+
     };
 }
 

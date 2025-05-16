@@ -23,12 +23,12 @@ namespace parsers {
         //Get methods
         uint64_t    GetCollectionCycleIndex() const;
         uint64_t    GetCollectionCycleTimeStampNs() const;
-        double    GetUDPTime() const;
-        double    GetParseTime() const;
-        double    GetEventTime() const;
-        double    GetTotalTime() const;
+        double      GetUDPTime() const;
+        double      GetParseTime() const;
+        double      GetEventTime() const;
+        double      GetTotalTime() const;
         uint64_t    GetDataProcessed() const;
-        double    GetDataRate() const;
+        double      GetDataRate() const;
 
         //Print methods
         std::ostringstream Stream() override;
@@ -36,6 +36,15 @@ namespace parsers {
 
     private:
         const std::string className_ = "NaluTimeParser";
+
+        DataLocation collection_cycle_index_data_location_;
+        DataLocation collection_cycle_time_stamp_ns_data_location_;
+        DataLocation udp_time_data_location_;
+        DataLocation parse_time_data_location_;
+        DataLocation event_time_data_location_;
+        DataLocation total_time_data_location_;
+        DataLocation data_processed_data_location_;
+        DataLocation data_rate_data_location_;
 
     };
 }

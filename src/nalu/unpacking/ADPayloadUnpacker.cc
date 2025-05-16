@@ -16,7 +16,7 @@ ADPayloadUnpacker::ADPayloadUnpacker()
     , naluEventFooterParser_(std::make_unique<parsers::NaluEventFooterParser>())
 
 {
-    utils::LoggerHolder::getInstance()->InfoLogger << "We are constructing the " << className_ << std::endl;
+    utils::LoggerHolder::getInstance().InfoLogger << "We are constructing the " << className_ << std::endl;
 
     //Register the collections
     this->RegisterCollection("NaluEventHeaderCollection",naluEventHeaderPtrCol_);
@@ -30,7 +30,7 @@ ADPayloadUnpacker::ADPayloadUnpacker()
 ADPayloadUnpacker::~ADPayloadUnpacker() {};
 
 int ADPayloadUnpacker::Unpack(const uint64_t* words, unsigned int& wordNum) {
-    utils::LoggerHolder::getInstance()->InfoLogger << "  We are unpacking an AD payload." << std::endl;
+    utils::LoggerHolder::getInstance().InfoLogger << "  We are unpacking an AD payload." << std::endl;
 
     // Store the starting word for comparison at the end
     unsigned int startWordNum = wordNum;
@@ -46,7 +46,7 @@ int ADPayloadUnpacker::Unpack(const uint64_t* words, unsigned int& wordNum) {
     // }
 
     naluEventHeaderParser_->SetWords(header_words);
-    utils::LoggerHolder::getInstance()->DebugLogger << naluEventHeaderParser_->Stream().str() << std::endl;
+    utils::LoggerHolder::getInstance().DebugLogger << naluEventHeaderParser_->Stream().str() << std::endl;
 
     //Create the data product
     naluEventHeaderPtrCol_->push_back(naluEventHeaderParser_->NewDataProduct());
@@ -74,7 +74,7 @@ int ADPayloadUnpacker::Unpack(const uint64_t* words, unsigned int& wordNum) {
 
         // Pass the header words to the header parser
         naluPacketHeaderParser_->SetWords(packet_header_words);
-        utils::LoggerHolder::getInstance()->DebugLogger << naluPacketHeaderParser_->Stream().str()  << std::endl;
+        utils::LoggerHolder::getInstance().DebugLogger << naluPacketHeaderParser_->Stream().str()  << std::endl;
 
         // Create and store the header data product
         naluPacketHeaderPtrCol_->push_back(naluPacketHeaderParser_->NewDataProduct());
@@ -93,7 +93,7 @@ int ADPayloadUnpacker::Unpack(const uint64_t* words, unsigned int& wordNum) {
 
         // Parse the sample data
         naluPacketParser_->SetWords(sample_words);
-        utils::LoggerHolder::getInstance()->DebugLogger << naluPacketParser_->Stream().str()  << std::endl;
+        utils::LoggerHolder::getInstance().DebugLogger << naluPacketParser_->Stream().str()  << std::endl;
 
         // --- STORE PACKET DATA BY CHANNEL ---
 
@@ -114,7 +114,7 @@ int ADPayloadUnpacker::Unpack(const uint64_t* words, unsigned int& wordNum) {
 
         // Parse the footer
         naluPacketFooterParser_->SetWords(packet_footer_words);
-        utils::LoggerHolder::getInstance()->DebugLogger << naluPacketFooterParser_->Stream().str() << std::endl;
+        utils::LoggerHolder::getInstance().DebugLogger << naluPacketFooterParser_->Stream().str() << std::endl;
 
         // Create and store the footer data product
         naluPacketFooterPtrCol_->push_back(naluPacketFooterParser_->NewDataProduct());
@@ -140,7 +140,7 @@ int ADPayloadUnpacker::Unpack(const uint64_t* words, unsigned int& wordNum) {
     
     // Pass the footer words to the footer parser
     naluEventFooterParser_->SetWords(footer_words);
-    utils::LoggerHolder::getInstance()->DebugLogger << naluEventFooterParser_->Stream().str()  << std::endl;
+    utils::LoggerHolder::getInstance().DebugLogger << naluEventFooterParser_->Stream().str()  << std::endl;
 
     uint32_t event_footer = naluEventFooterParser_->GetEventFooter();
 
@@ -154,7 +154,7 @@ int ADPayloadUnpacker::Unpack(const uint64_t* words, unsigned int& wordNum) {
         << "Details: The footer word is " << event_footer << ", but should be 0xEEEE"<< std::endl;
         return FAILURE_UNPACKING;
     } else {
-        utils::LoggerHolder::getInstance()->DebugLogger << "  Reached end of payload with footer word 0x" << std::hex << event_footer << std::endl;
+        utils::LoggerHolder::getInstance().DebugLogger << "  Reached end of payload with footer word 0x" << std::hex << event_footer << std::endl;
     }
 
     //Clear data from parser

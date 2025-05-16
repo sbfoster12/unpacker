@@ -6,7 +6,7 @@ NaluEventUnpacker::NaluEventUnpacker()
     : EventUnpacker(), 
     className_("NaluEventUnpacker")
 {
-    utils::LoggerHolder::getInstance()->InfoLogger << "We are constructing the " << className_ << std::endl;
+    utils::LoggerHolder::getInstance().InfoLogger << "We are constructing the " << className_ << std::endl;
 
     bankUnpackers_[AD_BANK_ID] = this->MakeAndRegister<ADBankUnpacker>();
     bankUnpackers_[AT_BANK_ID] = this->MakeAndRegister<ATBankUnpacker>();
@@ -20,7 +20,7 @@ int NaluEventUnpacker::UnpackEvent(TMEvent* event) {
     //Clear previous event
     this->ClearCollections();
 
-    utils::LoggerHolder::getInstance()->InfoLogger << std::dec << "Unpacking Event ID: " << event->event_id << ", SN: " << event->serial_number << std::endl;
+    utils::LoggerHolder::getInstance().InfoLogger << std::dec << "Unpacking Event ID: " << event->event_id << ", SN: " << event->serial_number << std::endl;
 
     // Loop over all banks and read the AD banks
     event->FindAllBanks();

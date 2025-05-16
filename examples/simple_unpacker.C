@@ -5,11 +5,11 @@ Some description...
 */
 
 // Load the libraries
-// R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libmidas.dylib)
-// R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libcommon_data_products.dylib)
-// R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libnalu_data_products.dylib)
-// R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libcommon_unpacking.dylib)
-// R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libnalu_unpacking.dylib)
+R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libmidas.dylib)
+R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libcommon_data_products.dylib)
+R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libnalu_data_products.dylib)
+R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libcommon_unpacking.dylib)
+R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libnalu_unpacking.dylib)
 
 
 // Standard
@@ -26,7 +26,6 @@ Some description...
 #include <TSystem.h>
 
 // Custom - Common
-#include "common/unpacking/UnpackerHelpers.hh"
 #include "common/unpacking/Logger.hh"
 
 // Custom - Nalu
@@ -40,10 +39,11 @@ Some description...
 
 #include <string>
 #include <sstream>
+#include <nlohmann/json.hpp>
 
 int simple_unpacker(std::string input_file_name, int verbosity)
 {
-
+    
     // -----------------------------------------------------------------------------------------------
     // Parse command line arguments
 
@@ -60,7 +60,7 @@ int simple_unpacker(std::string input_file_name, int verbosity)
     std::cout << "Output file: " << output_file_name << std::endl;
 
     // Set verbosity for unpacker
-    utils::LoggerHolder::getInstance()->SetVerbosity(verbosity);
+    utils::LoggerHolder::getInstance().SetVerbosity(verbosity);
 
     // End of parsing command line arguments
     // -----------------------------------------------------------------------------------------------
@@ -116,20 +116,39 @@ int simple_unpacker(std::string input_file_name, int verbosity)
             break;
         }
 
-        if (thisEvent->serial_number % 100 == 0) {
-            std::cout << "event_id: " << thisEvent->event_id << ", serial number: " << thisEvent->serial_number << std::endl;
-        }
+        std::cout << "event_id: " << thisEvent->event_id << ", serial number: " << thisEvent->serial_number << std::endl;
+
+        // // if (thisEvent->serial_number % 100 == 0) {
+        //     std::cout << "event_id: " << thisEvent->event_id << ", serial number: " << thisEvent->serial_number << std::endl;
+        // }
         
         int event_id = thisEvent->event_id;
 
-        // Skip event if it is an internal midas event
+        // Check if this is an internal midas event
         if (unpackers::IsHeaderEvent(thisEvent)) {
+            // // Check if this is a BOR (begin of run)
+            // if (event_id == 32768) {
+            //     // This is a begin of run event
+            //     // and contains an odb dump
+            //     std::vector<char> data = thisEvent->data;
+            //     std::string odbDump(data.begin(), data.end());
+            //     std::size_t pos = odbDump.find('{');
+            //     if (pos != std::string::npos) {
+            //         odbDump.erase(0, pos);  // Keep the '{'
+            //     }
+            //     std::cout << odbDump << std::endl;
+            //     nlohmann::json j = nlohmann::json::parse(odbDump);
+            //     std::cout << j.dump(4) << std::endl;
+            //     // make the ODB data product
+            //     // odb = dataProducts::ODB(odbDump);
+            //     //    outfile->WriteObject(&odb, "odb");
+            // }
             delete thisEvent;
             continue;
         }
 
         thisEvent->FindAllBanks();
-        // thisEvent->PrintBanks();
+        thisEvent->PrintBanks();
         // auto bank = thisEvent->FindBank("AD%0");
         // std::cout << thisEvent->BankToString(bank) << std::endl;
 
