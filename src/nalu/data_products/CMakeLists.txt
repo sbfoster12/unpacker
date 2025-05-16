@@ -1,7 +1,6 @@
 # Glob the source files together
 file(GLOB SOURCE_FILES
     *.cc
-    
 )
 
 # Make an object file

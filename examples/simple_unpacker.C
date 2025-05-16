@@ -36,6 +36,7 @@ R__LOAD_LIBRARY(/Users/sbfoster/Projects/unpacker/lib/libnalu_unpacking.dylib)
 #include "nalu/data_products/NaluPacketFooter.hh"
 #include "nalu/data_products/NaluEventFooter.hh"
 #include "nalu/data_products/NaluTime.hh"
+#include "nalu/data_products/NaluODB.hh"
 
 #include <string>
 #include <sstream>
@@ -91,6 +92,8 @@ int simple_unpacker(std::string input_file_name, int verbosity)
     dataProducts::NaluTimeCollection nalu_times;
     tree->Branch("nalu_times", &nalu_times);
 
+    dataProducts::NaluODB odb;
+
     // -----------------------------------------------------------------------------------------------
 
     // Set up an event unpacker object
@@ -116,39 +119,37 @@ int simple_unpacker(std::string input_file_name, int verbosity)
             break;
         }
 
-        std::cout << "event_id: " << thisEvent->event_id << ", serial number: " << thisEvent->serial_number << std::endl;
-
-        // // if (thisEvent->serial_number % 100 == 0) {
-        //     std::cout << "event_id: " << thisEvent->event_id << ", serial number: " << thisEvent->serial_number << std::endl;
-        // }
+        if (thisEvent->serial_number % 100 == 0) {
+            std::cout << "event_id: " << thisEvent->event_id << ", serial number: " << thisEvent->serial_number << std::endl;
+        }
         
         int event_id = thisEvent->event_id;
 
         // Check if this is an internal midas event
         if (unpackers::IsHeaderEvent(thisEvent)) {
-            // // Check if this is a BOR (begin of run)
-            // if (event_id == 32768) {
-            //     // This is a begin of run event
-            //     // and contains an odb dump
-            //     std::vector<char> data = thisEvent->data;
-            //     std::string odbDump(data.begin(), data.end());
-            //     std::size_t pos = odbDump.find('{');
-            //     if (pos != std::string::npos) {
-            //         odbDump.erase(0, pos);  // Keep the '{'
-            //     }
-            //     std::cout << odbDump << std::endl;
-            //     nlohmann::json j = nlohmann::json::parse(odbDump);
-            //     std::cout << j.dump(4) << std::endl;
-            //     // make the ODB data product
-            //     // odb = dataProducts::ODB(odbDump);
-            //     //    outfile->WriteObject(&odb, "odb");
-            // }
+            // Check if this is a BOR (begin of run)
+            if (event_id == 32768) {
+                // This is a begin of run event
+                // and contains an odb dump
+                std::vector<char> data = thisEvent->data;
+                std::string odb_dump(data.begin(), data.end());
+                std::size_t pos = odb_dump.find('{');
+                if (pos != std::string::npos) {
+                    odb_dump.erase(0, pos);  // Keep the '{'
+                }
+                // std::cout << odb_dump << std::endl;
+                // nlohmann::json j = nlohmann::json::parse(odb_dump);
+                // std::cout << j.dump(4) << std::endl;
+                // make the ODB data product
+                odb = dataProducts::NaluODB(odb_dump);
+                outfile->WriteObject(&odb, "nalu_odb");
+            }
             delete thisEvent;
             continue;
         }
 
         thisEvent->FindAllBanks();
-        thisEvent->PrintBanks();
+        // thisEvent->PrintBanks();
         // auto bank = thisEvent->FindBank("AD%0");
         // std::cout << thisEvent->BankToString(bank) << std::endl;
 

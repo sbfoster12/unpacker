@@ -11,12 +11,14 @@ target_include_directories(common_data_products
     PUBLIC
         ${CMAKE_SOURCE_DIR}/include
         ${ROOT_INCLUDE_DIRS}
+
 )
 
 # Libraries
 target_link_libraries(common_data_products
     PUBLIC
         ${ROOT_LIBRARIES}
+        nlohmann_json::nlohmann_json
 )
 
 #These are the data products for which we make root dictionaries

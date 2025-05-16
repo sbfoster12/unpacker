@@ -25,4 +25,7 @@
 #pragma link C++ class dataProducts::NaluTime+;
 #pragma link C++ class std::vector<dataProducts::NaluTime>+;
 
+#pragma link C++ class dataProducts::NaluODB+;
+#pragma link C++ class std::vector<dataProducts::NaluODB>+;
+
 #endif
