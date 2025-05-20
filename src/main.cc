@@ -15,9 +15,9 @@ Some description...
 #include <TFile.h>
 #include <TTree.h>
 #include <TBufferJSON.h>
+#include <TSystem.h>
 
 // Custom - Common
-#include "common/unpacking/UnpackerHelpers.hh"
 #include "common/unpacking/Logger.hh"
 
 // Custom - Nalu
@@ -28,26 +28,28 @@ Some description...
 #include "nalu/data_products/NaluPacketFooter.hh"
 #include "nalu/data_products/NaluEventFooter.hh"
 #include "nalu/data_products/NaluTime.hh"
+#include "nalu/data_products/NaluODB.hh"
 
 #include <string>
 #include <sstream>
+// #include <nlohmann/json.hpp>
 
 int main(int argc, char *argv[])
 {
-
+    
     // -----------------------------------------------------------------------------------------------
     // Parse command line arguments
 
-    int verbosity = 2;
-
-    // We need three arguments: program & file name
-    if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " [input_file_name]" << std::endl;
+    // We need three arguments: program & file name & verbosity
+    if (argc != 3) {
+        std::cerr << "Usage: " << argv[0] << " input_file_name verbosity" << std::endl;
         return 1;
     }
 
     // input file name
     std::string input_file_name = argv[1];
+
+    int verbosity = std::atoi(argv[2]);
 
     // Check if input file exists
     if (!std::filesystem::exists(input_file_name)) {
@@ -55,14 +57,14 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // Set verbosity for unpacker
-    utils::LoggerHolder::getInstance().SetVerbosity(verbosity);
-
     // output file name
     std::string output_file_name;
     output_file_name = input_file_name.substr(input_file_name.find_last_of("/\\") + 1);
     output_file_name = output_file_name.substr(0, output_file_name.find_last_of('.')) + ".root";
-    utils::LoggerHolder::getInstance().InfoLogger << "Output file: " << output_file_name << std::endl;
+    std::cout << "Output file: " << output_file_name << std::endl;
+
+    // Set verbosity for unpacker
+    utils::LoggerHolder::getInstance().SetVerbosity(verbosity);
 
     // End of parsing command line arguments
     // -----------------------------------------------------------------------------------------------
@@ -74,7 +76,6 @@ int main(int argc, char *argv[])
     // outfile->SetCompressionLevel(0); // much faster, but the file size doubles (62->137 MB), 2.936s
     outfile->SetCompressionAlgorithm(4); // LZ4. 40-50% faster, but slightly larger file sizes. 3.292s, 91MB
     TTree *tree = new TTree("tree", "tree");
-    // TTree *treeSimple = new TTree("treeSimple", "treeSimple");
 
     dataProducts::NaluEventHeaderCollection nalu_event_headers;
     tree->Branch("nalu_event_headers", &nalu_event_headers);
@@ -94,15 +95,8 @@ int main(int argc, char *argv[])
     dataProducts::NaluTimeCollection nalu_times;
     tree->Branch("nalu_times", &nalu_times);
 
-    // std::vector<short> trace;
-    // int channel;
-    // uint64_t timeStamp;
-    // treeSimple->Branch("trace", &trace);
-    // treeSimple->Branch("channel", &channel);
-    // treeSimple->Branch("timeStamp", &timeStamp);
-    // allow for tref usage in t->Draw() commands
-    // this might slow things down a bit...
-    tree->BranchRef();
+    dataProducts::NaluODB odb;
+
     // -----------------------------------------------------------------------------------------------
 
     // Set up an event unpacker object
@@ -129,13 +123,30 @@ int main(int argc, char *argv[])
         }
 
         if (thisEvent->serial_number % 100 == 0) {
-            utils::LoggerHolder::getInstance().InfoLogger << "event_id: " << thisEvent->event_id << ", serial number: " << thisEvent->serial_number << std::endl;
+            std::cout << "event_id: " << thisEvent->event_id << ", serial number: " << thisEvent->serial_number << std::endl;
         }
         
         int event_id = thisEvent->event_id;
 
-        // Skip event if it is an internal midas event
+        // Check if this is an internal midas event
         if (unpackers::IsHeaderEvent(thisEvent)) {
+            // Check if this is a BOR (begin of run)
+            if (event_id == 32768) {
+                // This is a begin of run event
+                // and contains an odb dump
+                std::vector<char> data = thisEvent->data;
+                std::string odb_dump(data.begin(), data.end());
+                std::size_t pos = odb_dump.find('{');
+                if (pos != std::string::npos) {
+                    odb_dump.erase(0, pos);  // Keep the '{'
+                }
+                // std::cout << odb_dump << std::endl;
+                // nlohmann::json j = nlohmann::json::parse(odb_dump);
+                // std::cout << j.dump(4) << std::endl;
+                // make the ODB data product
+                odb = dataProducts::NaluODB(odb_dump);
+                outfile->WriteObject(&odb, "nalu_odb");
+            }
             delete thisEvent;
             continue;
         }
@@ -148,7 +159,7 @@ int main(int argc, char *argv[])
         // only unpack events with id 1
         if (event_id > 0) {
             nTotalMidasEvents++;
-            utils::LoggerHolder::getInstance().InfoLogger << "Processing event " << nTotalMidasEvents << std::endl;
+            //std::cout << "Processing event " << nTotalMidasEvents << std::endl;
             // Unpack the event
             // This will fill the dataproduct collections
             auto status = eventUnpacker->UnpackEvent(thisEvent);
@@ -170,67 +181,12 @@ int main(int argc, char *argv[])
 
             tree->Fill();
             nalu_event_headers.clear();
+            nalu_packet_headers.clear();
+            nalu_waveforms.clear();
+            nalu_packet_footers.clear();
+            nalu_event_footers.clear();
+            nalu_times.clear();
 
-
-            // // Get a vector of waveform collections
-            // auto waveformsVector = eventUnpacker->GetCollectionVector<dataProducts::Waveform>("WaveformCollection", &dataProducts::Waveform::waveformIndex);
-
-            // std::cout << "waveformsVector.size(): " << waveformsVector.size() << std::endl;
-            // //Check if each there are any waveforms
-            // if (waveformsVector.size() == 0) {
-            //     std::cout << "Warning: skipped a midas event because it had no waveforms." << std::endl;
-            //     nSkippedMidasEvents++;
-            //     continue;
-            // }
-
-//            //Check if each waveform index has the same number of events
-//            bool skipMidasEvent = false;
-//            int number_of_waveforms = waveformsVector.front().size(); //check above ensures there is at least one entry
-//            std::cout << "number_of_waveforms: " << number_of_waveforms << std::endl;
-//            for (auto &wfs : waveformsVector) {
-//                std::cout << "  wfs.size: " << wfs.size() << std::endl;
-//                if (wfs.size() != (uint)number_of_waveforms) {
-//                    skipMidasEvent = true;
-//                    std::cout << " waveformsVector.front().size(): " <<  waveformsVector.front().size() << std::endl;
-//                    break;
-//                }
-//            }
-//            if (skipMidasEvent) {
-//                std::cout << "Warning: skipped  midas event " << thisEvent->serial_number << " because number of waveforms doesn't match between AMC slots." << std::endl;
-//                nSkippedMidasEvents++;
-//                continue;
-//            }
-
-            // std::vector<uint64_t> timestamps[5];
-            // waveforms.clear();
-            // timestamps[0].clear();
-            // timestamps[1].clear();
-            // timestamps[2].clear();
-            // timestamps[3].clear();
-            // timestamps[4].clear();
-            // for (auto &waveforms_tmp : waveformsVector) {
-            //     waveforms = waveforms_tmp;
-            //     trace.clear();
-            //     for ( auto &waveform_loc : waveforms ) {
-            //         trace = waveform_loc.trace;
-            //         channel = waveform_loc.channelTag;
-            //         timeStamp = waveform_loc.clockCounter;
-            //         timestamps[channel].push_back(timeStamp);
-            //         treeSimple->Fill();
-            //         trace.clear();
-            //     }
-
-        // tree->Fill();
-        // waveforms.clear();
-                
-            // }
-//          for ( auto iTime = 0; iTime < timestamps[0].size(); ++iTime ) {
-//            std::cout << "i, dt's: " << iTime << " "
-//                                     << (long)timestamps[1][iTime] - (long)timestamps[0][iTime] << " "
-//                                     << (long)timestamps[2][iTime] - (long)timestamps[0][iTime] << " "
-//                                     << (long)timestamps[3][iTime] - (long)timestamps[0][iTime] << " "
-//                                     << (long)timestamps[4][iTime] - (long)timestamps[0][iTime] << std::endl;
-//          }
         } // end if event id = 1
 
     } // end loop over events
@@ -240,11 +196,10 @@ int main(int argc, char *argv[])
     delete mReader;
 
     tree->Write();
-    // treeSimple->Write();
     outfile->Close();
 
-    utils::LoggerHolder::getInstance().InfoLogger << "Skipped " << nSkippedMidasEvents << "/" << nTotalMidasEvents << " midas events" << std::endl;
+    std::cout << "Skipped " << nSkippedMidasEvents << "/" << nTotalMidasEvents << " midas events" << std::endl;
 
-    utils::LoggerHolder::getInstance().InfoLogger << "All done!" << std::endl;
+    std::cout << "All done!" << std::endl;
     return 0;
 }
