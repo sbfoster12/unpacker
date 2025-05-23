@@ -44,20 +44,33 @@ int NaluEventUnpacker::UnpackEvent(TMEvent* event) {
         }
     }
 
-    return SUCCESS_UNPACKING;
+    return UNPACKING_SUCCESS;
 }
 
 //method to unpack a bank directly instead of the event
-int NaluEventUnpacker::UnpackBank(uint64_t* bankData, unsigned int totalWords, int serialNumber, std::string bankName) {
-    // if (bankName.substr(0, 2) == "CR") {
-    //     bankUnpackers_[CR_BANK_ID]->ClearCollections();
-    //     int crateNum = std::stoi(bankName.substr(3, 4));
-    //     auto status = bankUnpackers_[CR_BANK_ID]->UnpackBank(bankData, totalWords, serialNumber, crateNum);
-    //     if (status == FAILURE_UNPACKING) {
-    //         //Something went wrong, so clear the collections and return failure
-    //         bankUnpackers_[CR_BANK_ID]->ClearCollections();
-    //         return FAILURE_UNPACKING;
-    //     }
-    // }
-    return SUCCESS_UNPACKING;
+int NaluEventUnpacker::UnpackBank(uint64_t* bank_data, unsigned int total_words, int serial_number, std::string bank_name) {
+
+    // Figure out which bank ID it is
+    int bank_ID = 0;
+    if (bank_name.substr(0, 2) == "AD") {
+        bank_ID = AD_BANK_ID;
+    } else if (bank_name.substr(0, 2) == "AT") {
+        bank_ID = AT_BANK_ID;
+    }
+
+    // Check it is a valid ID
+    if (bankUnpackers_.find(bank_ID) != bankUnpackers_.end()) {
+
+        // Get the bank unpacker
+        bankUnpackers_[AD_BANK_ID]->ClearCollections();
+        int bank_num = std::stoi(bank_name.substr(3, 4));
+        auto status = bankUnpackers_[AD_BANK_ID]->UnpackBank(bank_data, total_words, serial_number, bank_num);
+        if (status == UNPACKING_FAILURE) {
+            //Something went wrong, so clear the collections and return failure
+            bankUnpackers_[AD_BANK_ID]->ClearCollections();
+            return UNPACKING_FAILURE;
+        }
+    }
+
+    return UNPACKING_SUCCESS;
 }

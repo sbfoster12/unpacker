@@ -35,5 +35,5 @@ int ATPayloadUnpacker::Unpack(const uint64_t* words, unsigned int& wordNum) {
     // Clear data from parser
     naluTimeParser_->Clear();
 
-    return SUCCESS_UNPACKING;
+    return UNPACKING_SUCCESS;
 };

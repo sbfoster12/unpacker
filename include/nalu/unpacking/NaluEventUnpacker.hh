@@ -24,7 +24,7 @@ namespace unpackers {
 
         int UnpackEvent(TMEvent* event) override;
 
-        int UnpackBank(uint64_t* bankData, unsigned int totalWords, int serialNumber, std::string bankName) override;
+        int UnpackBank(uint64_t* bank_data, unsigned int total_words, int serial_number, std::string bank_name) override;
 
 
     private:

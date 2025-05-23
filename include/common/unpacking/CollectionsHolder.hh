@@ -114,7 +114,7 @@ namespace unpackers {
         //collections
         std::map<std::string,std::shared_ptr<dataProducts::DataProductPtrCollection>> basePtrCols_;
 
-        enum status { SUCCESS_UNPACKING = 0, FAILURE_UNPACKING = 1, UNPACKING_SUCCESS = 0, UNPACKING_FAILURE = 1 };
+        enum status { UNPACKING_SUCCESS = 0, UNPACKING_FAILURE = 1 };
 
 
     };
