@@ -16,7 +16,6 @@
 #include "nalu/data_products/NaluPacketFooter.hh"
 #include "nalu/data_products/NaluEventFooter.hh"
 
-
 namespace unpackers {
 
     class ADPayloadUnpacker : public PayloadUnpacker {
