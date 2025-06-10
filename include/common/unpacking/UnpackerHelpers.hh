@@ -8,10 +8,11 @@
 #include <iomanip>
 
 #if __APPLE__
-    #include "endian.h"
+    #include "endianapple.h"
 #elif __linu
     #include <endian.h>
 #endif
+
 
 //Custom
 #include "midasio.h"
