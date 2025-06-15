@@ -36,3 +36,6 @@ if [ ! -z "$NLOHMANN_PATHS" ]; then
 fi
 
 echo "Environment paths removed for $UNPACKER_PATH"
+
+# Finally unset the UNPACKER_PATH variable itself
+unset UNPACKER_PATH
