@@ -1,5 +1,7 @@
 #include "common/unpacking/CollectionsHolder.hh"
 
+ClassImp(unpackers::CollectionsHolder);
+
 using namespace unpackers;
 
 CollectionsHolder::CollectionsHolder()
