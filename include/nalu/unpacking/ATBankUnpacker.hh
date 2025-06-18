@@ -26,6 +26,8 @@ namespace unpackers {
 
         int UnpackBank(uint64_t* bankData, unsigned int totalWords, int serialNumber, int crateNum) override;
 
+        /// ROOT class definition macro with versioning
+        ClassDefOverride(ATBankUnpacker,1)
 
     private:
         //class name
