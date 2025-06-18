@@ -1,5 +1,5 @@
-#ifndef _HH
-#define _HH
+#ifndef COMMON_UNPACKING_COLLECTIONSHOLDER_HH
+#define COMMON_UNPACKING_COLLECTIONSHOLDER_HH
 
 //Standard
 #include <iostream>
@@ -8,12 +8,15 @@
 #include <memory>
 #include <map>
 
+//ROOT
+#include "TObject.h"
+
 //Custom
 #include "common/data_products/DataProduct.hh"
 
 namespace unpackers {
 
-    class CollectionsHolder {
+    class CollectionsHolder : public TObject {
         
     public:
         
@@ -105,6 +108,8 @@ namespace unpackers {
             return t;
         }
 
+        ClassDef(CollectionsHolder, 1);
+
     private:
         //class name
         const std::string className_;
@@ -121,4 +126,4 @@ namespace unpackers {
 
 }
 
-#endif // _HH
+#endif // COMMON_UNPACKING_COLLECTIONSHOLDER_HH

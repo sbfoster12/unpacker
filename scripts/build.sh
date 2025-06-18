@@ -1,87 +1,69 @@
 #!/bin/bash
 
-# Usage: ./scripts/build.sh [--overwrite] [-j <jobs>] [--warnings] [--verbose]
+# Resolve absolute paths
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+BASE_DIR=$(realpath "$SCRIPT_DIR/..")
+BUILD_DIR="$BASE_DIR/build"
+CLEANUP_SCRIPT="$SCRIPT_DIR/cleanup.sh"
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PROJECT_ROOT="$( cd "${SCRIPT_DIR}/.." && pwd )"
+# Default flags
+OVERWRITE=false
+JOBS_ARG="-j"  # Use all processors
 
-BUILD_DIR="${PROJECT_ROOT}/build"
-
-# Defaults
-JOBS_FLAG=""
-OVERWRITE=0
-SHOW_WARNINGS=0   # Default: warnings off
-VERBOSE=0         # Default: no verbose output
-
-# Help function
-print_help() {
-  echo "Usage: ./scripts/build.sh [options]"
-  echo ""
-  echo "Options:"
-  echo "  --overwrite        Clean the build directory before building"
-  echo "  -j <jobs>          Number of parallel jobs to use during compilation"
-  echo "  --warnings         Enable compiler warnings"
-  echo "  --verbose          Enable verbose output during build"
-  echo "  -h, --help         Show this help message and exit"
-  exit 0
+# Help message
+show_help() {
+    echo "Usage: ./build.sh [OPTIONS]"
+    echo
+    echo "Options:"
+    echo "  -o, --overwrite           Remove existing build directory before building"
+    echo "  -j, --jobs <number>       Specify number of processors to use (default: all available)"
+    echo "  -h, --help                Display this help message"
 }
 
 # Parse arguments
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    --overwrite)
-      OVERWRITE=1
-      shift
-      ;;
-    -j)
-      if [[ -n "$2" && "$2" =~ ^[0-9]+$ ]]; then
-        JOBS_FLAG="-j$2"
-        shift 2
-      else
-        echo "[build.sh] Error: -j flag requires a numeric argument"
-        exit 1
-      fi
-      ;;
-    --warnings)
-      SHOW_WARNINGS=1
-      shift
-      ;;
-    --verbose)
-      VERBOSE=1
-      shift
-      ;;
-    -h|--help)
-      print_help
-      ;;
-    *)
-      echo "[build.sh] Unknown argument: $1"
-      echo "Use --help to see available options."
-      exit 1
-      ;;
-  esac
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -o|--overwrite)
+            OVERWRITE=true
+            shift
+            ;;
+        -j|--jobs)
+            if [[ -n "$2" && "$2" != -* ]]; then
+                JOBS_ARG="-j$2"
+                shift 2
+            else
+                JOBS_ARG="-j"
+                shift
+            fi
+            ;;
+        -h|--help)
+            show_help
+            exit 0
+            ;;
+        *)
+            echo "[build.sh, ERROR] Unknown option: $1"
+            show_help
+            exit 1
+            ;;
+    esac
 done
 
-if [[ $OVERWRITE -eq 1 ]]; then
-  echo "[build.sh] Overwrite flag passed, running cleanup.sh..."
-  "${SCRIPT_DIR}/cleanup.sh"
+# Optionally clean build
+if [ "$OVERWRITE" = true ]; then
+    echo "[build.sh] Cleaning previous build with: $CLEANUP_SCRIPT"
+    "$CLEANUP_SCRIPT"
 fi
 
+# Create and enter build directory
 mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR" || exit 1
 
-if [[ $VERBOSE -eq 1 ]]; then
-  echo "[build.sh] Building with verbose output enabled."
-  cmake --trace-expand ..
-  make VERBOSE=1 ${JOBS_FLAG}
-else
-  if [[ $SHOW_WARNINGS -eq 1 ]]; then
-    echo "[build.sh] Building with compiler warnings enabled."
-    cmake ..
-  else
-    echo "[build.sh] Building with compiler warnings disabled."
-    cmake -DCMAKE_CXX_FLAGS="-w" ..
-  fi
-  make ${JOBS_FLAG}
-fi
+# Run CMake and Make
+echo "[build.sh] Running cmake in: $BUILD_DIR"
+cmake "$BASE_DIR"
 
+echo "[build.sh] Building with make $JOBS_ARG"
+make $JOBS_ARG
 make install
+
+echo "[build.sh] Build complete."
