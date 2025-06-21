@@ -58,12 +58,16 @@ fi
 mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR" || exit 1
 
-# Run CMake and Make
-echo "[build.sh] Running cmake in: $BUILD_DIR"
-cmake "$BASE_DIR"
+# Define local install prefix (project root)
+LOCAL_INSTALL_PREFIX="$BASE_DIR"
+
+echo "[build.sh] Running cmake with install prefix: $LOCAL_INSTALL_PREFIX"
+cmake -DCMAKE_INSTALL_PREFIX="$LOCAL_INSTALL_PREFIX" "$BASE_DIR"
 
 echo "[build.sh] Building with make $JOBS_ARG"
 make $JOBS_ARG
+
+echo "[build.sh] Installing locally to $LOCAL_INSTALL_PREFIX"
 make install
 
-echo "[build.sh] Build complete."
+echo "[build.sh] Build and install complete."
