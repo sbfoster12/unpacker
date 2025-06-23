@@ -1,8 +1,0 @@
-
-Processing simple_unpacker.C++("../../analysis/unpacker_testing/run00036.mid.lz4",0)...
-Output file: run00036.mid.root
-event_id: 3, serial number: 0
-event_id: 3, serial number: 100
-Skipped 0/101 midas events
-All done!
-(int) 0
