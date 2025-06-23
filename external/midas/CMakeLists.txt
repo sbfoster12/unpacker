@@ -7,8 +7,9 @@ add_library(midas SHARED
 )
 
 target_include_directories(midas
-    PUBLIC 
-        ${CMAKE_SOURCE_DIR}/external/midas
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/external/midas>
+        $<INSTALL_INTERFACE:include>
 )
 
 target_link_libraries(midas

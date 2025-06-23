@@ -42,8 +42,9 @@ add_library(nalu_unpacking SHARED
 # Set include paths for compilation
 target_include_directories(nalu_unpacking
     PUBLIC
-        ${CMAKE_SOURCE_DIR}/include
-        ${ROOT_INCLUDE_DIRS}
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+        $<BUILD_INTERFACE:${ROOT_INCLUDE_DIRS}>
 )
 
 # Link dependencies
@@ -52,4 +53,13 @@ target_link_libraries(nalu_unpacking
         common_unpacking
         nalu_data_products
         ${ROOT_LIBRARIES}
+)
+
+# Install the ROOT dictionary files generated for this library
+install(
+    FILES 
+        ${CMAKE_CURRENT_BINARY_DIR}/libnalu_unpacking_rdict.pcm
+        ${CMAKE_CURRENT_BINARY_DIR}/libnalu_unpacking.rootmap
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    OPTIONAL
 )

@@ -37,18 +37,6 @@ target_link_libraries(unpacker
         ${ROOT_LIBRARIES}
 )
 
-# --- Install rules for ROOT dictionaries ---
-# Install generated PCM and rootmap files for libraries:
-foreach(lib common_data_products nalu_data_products common_unpacking nalu_unpacking)
-    install(
-        FILES 
-            ${CMAKE_BINARY_DIR}/src/${lib//_//}/lib${lib}_rdict.pcm
-            ${CMAKE_BINARY_DIR}/src/${lib//_//}/lib${lib}.rootmap
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        OPTIONAL
-    )
-endforeach()
-
 # --- Installation ---
 
 # Libraries (shared/static)
