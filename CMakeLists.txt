@@ -27,7 +27,7 @@ add_subdirectory(src)
 # --- Executable ---
 add_executable(unpacker src/main.cc)
 target_link_libraries(unpacker
-    PRIVATE 
+    PUBLIC 
         common_data_products
         common_unpacking
         nalu_data_products
