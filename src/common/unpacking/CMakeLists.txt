@@ -38,6 +38,8 @@ add_library(common_unpacking SHARED
     ${SOURCE_FILES}
     common_unpacking_dict.cxx
 )
+add_library(unpacker::common_unpacking ALIAS common_unpacking)
+
 
 # Set include paths for compilation
 target_include_directories(common_unpacking

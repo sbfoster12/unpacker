@@ -7,6 +7,7 @@ file(GLOB SOURCE_FILES
 
 # Make an object file
 add_library(common_data_products SHARED ${SOURCE_FILES})
+add_library(unpacker::common_data_products ALIAS common_data_products)
 
 # Include directories - use generator expressions for build vs install
 target_include_directories(common_data_products

@@ -5,6 +5,8 @@ file(GLOB SOURCE_FILES
 add_library(midas SHARED    
     ${SOURCE_FILES}
 )
+add_library(unpacker::midas ALIAS midas)
+
 
 target_include_directories(midas
     PUBLIC

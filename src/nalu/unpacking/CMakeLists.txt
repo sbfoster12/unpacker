@@ -54,6 +54,8 @@ target_link_libraries(nalu_unpacking
         nalu_data_products
         ${ROOT_LIBRARIES}
 )
+add_library(unpacker::nalu_unpacking ALIAS nalu_unpacking)
+
 
 # Install the ROOT dictionary files generated for this library
 install(

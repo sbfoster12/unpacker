@@ -5,6 +5,8 @@ file(GLOB SOURCE_FILES
 
 # Make an object file
 add_library(nalu_data_products SHARED ${SOURCE_FILES})
+add_library(unpacker::nalu_data_products ALIAS nalu_data_products)
+
 
 # Include directories
 target_include_directories(nalu_data_products
