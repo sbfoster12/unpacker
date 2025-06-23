@@ -36,7 +36,7 @@ root_generate_dictionary(nalu_unpacking_dict
 # Add library with ROOT dictionary source
 add_library(nalu_unpacking SHARED
     ${SOURCE_FILES}
-    nalu_unpacking_dict.cxx
+    ${CMAKE_CURRENT_BINARY_DIR}/nalu_unpacking_dict.cxx
 )
 
 # Set include paths for compilation

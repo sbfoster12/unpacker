@@ -36,7 +36,7 @@ root_generate_dictionary(common_unpacking_dict
 # Add library with ROOT dictionary source
 add_library(common_unpacking SHARED
     ${SOURCE_FILES}
-    common_unpacking_dict.cxx
+    ${CMAKE_CURRENT_BINARY_DIR}/common_unpacking_dict.cxx
 )
 add_library(unpacker::common_unpacking ALIAS common_unpacking)
 
