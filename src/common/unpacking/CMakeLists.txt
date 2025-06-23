@@ -5,6 +5,11 @@ file(GLOB SOURCE_FILES
     *.cc
 )
 
+# Add library with ROOT dictionary source
+add_library(common_unpacking SHARED
+    ${SOURCE_FILES}
+)
+
 # Glob headers for ROOT dictionary generation
 file(GLOB DICT_HEADERS
     ${PROJECT_SOURCE_DIR}/include/common/unpacking/*.hh
@@ -33,11 +38,7 @@ root_generate_dictionary(common_unpacking_dict
     OPTIONS ${ROOT_DICTIONARY_INCLUDE_OPTIONS}
 )
 
-# Add library with ROOT dictionary source
-add_library(common_unpacking SHARED
-    ${SOURCE_FILES}
-    common_unpacking_dict.cxx
-)
+message(STATUS "PROJECT_SOURCE_DIR = ${PROJECT_SOURCE_DIR}")
 
 # Set include paths for compilation
 target_include_directories(common_unpacking

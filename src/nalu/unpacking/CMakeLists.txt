@@ -10,6 +10,11 @@ file(GLOB DICT_HEADERS
     ${CMAKE_SOURCE_DIR}/include/nalu/unpacking/*.hh
 )
 
+# Add library with ROOT dictionary source
+add_library(nalu_unpacking SHARED
+    ${SOURCE_FILES}
+)
+
 # Define include paths
 set(INCLUDE_DIRS
     ${CMAKE_SOURCE_DIR}/include
@@ -31,12 +36,6 @@ root_generate_dictionary(nalu_unpacking_dict
     MODULE nalu_unpacking
     LINKDEF ${PROJECT_SOURCE_DIR}/include/nalu/unpacking/LinkDef.h
     OPTIONS ${ROOT_DICTIONARY_INCLUDE_OPTIONS}
-)
-
-# Add library with ROOT dictionary source
-add_library(nalu_unpacking SHARED
-    ${SOURCE_FILES}
-    nalu_unpacking_dict.cxx
 )
 
 # Set include paths for compilation
