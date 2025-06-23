@@ -7,7 +7,7 @@ file(GLOB SOURCE_FILES
 
 # Glob headers for ROOT dictionary generation
 file(GLOB DICT_HEADERS
-    ${CMAKE_SOURCE_DIR}/include/nalu/unpacking/*.hh
+    ${PROJECT_SOURCE_DIR}/include/nalu/unpacking/*.hh
 )
 
 # Add library with ROOT dictionary source
@@ -17,8 +17,8 @@ add_library(nalu_unpacking SHARED
 
 # Define include paths
 set(INCLUDE_DIRS
-    ${CMAKE_SOURCE_DIR}/include
-    ${CMAKE_SOURCE_DIR}/external/midas
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/external/midas
     ${ROOT_INCLUDE_DIRS}
 )
 
