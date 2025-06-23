@@ -1,44 +1,35 @@
-project(unpacker)
-
 cmake_minimum_required(VERSION 3.13)
+project(unpacker VERSION 1.0 LANGUAGES CXX)
 
-# for debug
-# set(CMAKE_BUILD_TYPE RelWithDebInfo)
+# --- Compiler & build settings ---
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# ROOT
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
+# --- Dependencies ---
 find_package(ROOT REQUIRED)
 include(${ROOT_USE_FILE})
 include("${ROOT_DIR}/RootMacros.cmake")
 
-# ZLIB
 find_package(ZLIB REQUIRED)
-
-# JSON
 find_package(nlohmann_json REQUIRED)
 
-set(CMAKE_CXX_STANDARD 17)
+# Optional macOS arch override
+set(CMAKE_OSX_ARCHITECTURES "arm64" CACHE STRING "Mac architecture")
 
-set(CMAKE_OSX_ARCHITECTURES "arm64")
-
-# Set the path for where to look for the libraries of the installed target
-set(CMAKE_INSTALL_RPATH "${CMAKE_SOURCE_DIR}/lib")
-
-# Create installation directories
-file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
-file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-
-# Add all the subdirectories
+# --- Subdirectories ---
 add_subdirectory(external/midas)
 add_subdirectory(src)
 
-# Create the executable
+# --- Executable ---
 add_executable(unpacker src/main.cc)
-
-# Link libraries
 target_link_libraries(unpacker
-    PRIVATE 
+    PUBLIC 
         common_data_products
-        common_unpacking 
+        common_unpacking
         nalu_data_products
         nalu_unpacking
         midas
@@ -46,39 +37,54 @@ target_link_libraries(unpacker
         ${ROOT_LIBRARIES}
 )
 
-# Move the dictionaries so that they are next to the .so files
-add_custom_command(
-    TARGET unpacker POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy 
-        ${CMAKE_BINARY_DIR}/src/common/data_products/libcommon_data_products_rdict.pcm
-        ${CMAKE_BINARY_DIR}/src/common/data_products/libcommon_data_products.rootmap
-        ${CMAKE_BINARY_DIR}/src/nalu/data_products/libnalu_data_products_rdict.pcm
-        ${CMAKE_BINARY_DIR}/src/nalu/data_products/libnalu_data_products.rootmap
-        ${CMAKE_BINARY_DIR}/src/common/unpacking/libcommon_unpacking_rdict.pcm
-        ${CMAKE_BINARY_DIR}/src/common/unpacking/libcommon_unpacking.rootmap
-        ${CMAKE_BINARY_DIR}/src/nalu/unpacking/libnalu_unpacking_rdict.pcm
-        ${CMAKE_BINARY_DIR}/src/nalu/unpacking/libnalu_unpacking.rootmap
-        ${CMAKE_SOURCE_DIR}/lib
+# --- Install targets ---
+install(TARGETS
+    common_unpacking
+    common_data_products
+    midas
+    nalu_unpacking
+    nalu_data_products
+    EXPORT unpackerTargets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-# Install the libraries (including unpacking libs)
-install(TARGETS 
-            common_unpacking
-            common_data_products
-            midas
-            nalu_unpacking
-            nalu_data_products
-        LIBRARY DESTINATION ${CMAKE_SOURCE_DIR}/lib
-)
-
-# Install the executable
 install(TARGETS unpacker
-        DESTINATION ${CMAKE_SOURCE_DIR}/bin
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-# # Enable debugging symbols
-# target_compile_options(unpacker PRIVATE -g -v)
+# --- Install headers ---
+install(DIRECTORY include/
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
 
-# target_compile_options(unpacker PRIVATE -Wall -Wextra -Wno-undef)
+# --- Export targets for find_package ---
+install(EXPORT unpackerTargets
+    FILE unpackerTargets.cmake
+    NAMESPACE unpacker::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/unpacker
+)
 
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -v")
+# --- Package config and version files ---
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/unpackerConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion
+)
+
+configure_package_config_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/unpackerConfig.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/unpacker
+)
+
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/unpackerConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/unpackerConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/unpacker
+)
+
+# --- RPATH for local shared lib resolution ---
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
