@@ -1,5 +1,3 @@
 @PACKAGE_INIT@
 
 include("${CMAKE_CURRENT_LIST_DIR}/unpackerTargets.cmake")
-
-find_dependency(nlohmann_json REQUIRED)
