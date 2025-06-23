@@ -7,13 +7,13 @@ file(GLOB SOURCE_FILES
 
 # Glob headers for ROOT dictionary generation
 file(GLOB DICT_HEADERS
-    ${CMAKE_SOURCE_DIR}/include/common/unpacking/*.hh
+    ${PROJECT_SOURCE_DIR}/include/common/unpacking/*.hh
 )
 
 # Define include paths
 set(INCLUDE_DIRS
-    ${CMAKE_SOURCE_DIR}/include
-    ${CMAKE_SOURCE_DIR}/external/midas
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/external/midas
     ${ROOT_INCLUDE_DIRS}
 )
 
@@ -29,7 +29,7 @@ endforeach()
 root_generate_dictionary(common_unpacking_dict
     ${DICT_HEADERS}
     MODULE common_unpacking
-    LINKDEF ${CMAKE_SOURCE_DIR}/include/common/unpacking/LinkDef.h
+    LINKDEF ${PROJECT_SOURCE_DIR}/include/common/unpacking/LinkDef.h
     OPTIONS ${ROOT_DICTIONARY_INCLUDE_OPTIONS}
 )
 
@@ -42,8 +42,8 @@ add_library(common_unpacking SHARED
 # Set include paths for compilation
 target_include_directories(common_unpacking
     PUBLIC
-        ${CMAKE_SOURCE_DIR}/include
-        ${CMAKE_SOURCE_DIR}/external/midas
+        ${PROJECT_SOURCE_DIR}/include
+        ${PROJECT_SOURCE_DIR}/external/midas
         ${ROOT_INCLUDE_DIRS}
 )
 

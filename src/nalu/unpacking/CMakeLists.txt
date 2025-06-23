@@ -29,7 +29,7 @@ endforeach()
 root_generate_dictionary(nalu_unpacking_dict
     ${DICT_HEADERS}
     MODULE nalu_unpacking
-    LINKDEF ${CMAKE_SOURCE_DIR}/include/nalu/unpacking/LinkDef.h
+    LINKDEF ${PROJECT_SOURCE_DIR}/include/nalu/unpacking/LinkDef.h
     OPTIONS ${ROOT_DICTIONARY_INCLUDE_OPTIONS}
 )
 
@@ -42,7 +42,7 @@ add_library(nalu_unpacking SHARED
 # Set include paths for compilation
 target_include_directories(nalu_unpacking
     PUBLIC
-        ${CMAKE_SOURCE_DIR}/include
+        ${PROJECT_SOURCE_DIR}/include
         ${ROOT_INCLUDE_DIRS}
 )
 
