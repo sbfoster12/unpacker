@@ -4,10 +4,10 @@ project(unpacker VERSION 1.0 LANGUAGES CXX)
 # --- Compiler & build settings ---
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)  # for shared libs
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# Allow user override for install locations (lib, include, bin, etc)
 include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
 
 # --- Dependencies ---
 find_package(ROOT REQUIRED)
@@ -37,9 +37,7 @@ target_link_libraries(unpacker
         ${ROOT_LIBRARIES}
 )
 
-# --- Installation ---
-
-# Libraries (shared/static)
+# --- Install targets ---
 install(TARGETS
     common_unpacking
     common_data_products
@@ -52,44 +50,41 @@ install(TARGETS
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-# Executable
 install(TARGETS unpacker
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-# Headers
+# --- Install headers ---
 install(DIRECTORY include/
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-# Export targets for find_package support
+# --- Export targets for find_package ---
 install(EXPORT unpackerTargets
     FILE unpackerTargets.cmake
     NAMESPACE unpacker::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/unpacker
 )
 
-# --- Config + Version files ---
-include(CMakePackageConfigHelpers)
-
+# --- Package config and version files ---
 write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/ConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/unpackerConfigVersion.cmake
     VERSION ${PROJECT_VERSION}
-    COMPATIBILITY AnyNewerVersion
+    COMPATIBILITY SameMajorVersion
 )
 
 configure_package_config_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/unpackerConfig.cmake
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/unpacker
 )
 
 install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/Config.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/ConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/unpackerConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/unpackerConfigVersion.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/unpacker
 )
 
-# --- RPATH handling ---
+# --- RPATH for local shared lib resolution ---
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
